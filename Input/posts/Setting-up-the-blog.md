@@ -24,3 +24,9 @@ Repository
 
 Firstly, I will need some code repo to store my site. My site is public, so why not the source code? Let's go with github and a MIT licence. It's public anyway and I'm publishing it on github so others can benefit.
 (You can read more about licenses here http://choosealicense.com/). A quick clone, add, commit and push and my current version of this post is on the https://github.com/gniriki/gniriki.com. Awesome!
+Next step will be getting wyam. It can be downloaded and run as a standalone app, but as it is hosted on github too, I'll just add a link in my repository so I'm always up to date. 
+(Blah, it seems that my Git client is outdated and I need to upgrade before adding a submodule...). All right, done. Let's try to generate my site!
+
+Wyam
+
+Wyam comes with a few examples, including RazorAndMarkdownBlog which I've decided to use. I copied it over to my main folder and moved my post file to the input/Posts folder. 
