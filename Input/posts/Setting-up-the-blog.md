@@ -29,4 +29,6 @@ Next step will be getting wyam. It can be downloaded and run as a standalone app
 
 Wyam
 
+First we need to build the Wyam itself. Fortunately it comes with nice powershell script that does everything for us. Unfortunalety I have old Powershell and it needs at least 3.0. 
+I've installed 4.0 form here https://www.microsoft.com/en-us/download/details.aspx?id=40855 (Windows6.1-KB2819745-x64-MultiPkg.msu for my x64 Windows 7). Windows 8.1 and newer have this built-in.
 Wyam comes with a few examples, including RazorAndMarkdownBlog which I've decided to use. I copied it over to my main folder and moved my post file to the input/Posts folder. 
