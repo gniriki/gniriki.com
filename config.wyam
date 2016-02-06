@@ -14,3 +14,7 @@ Pipelines.Add("Home",
 	Razor(),
 	WriteFiles(".html")
 );
+
+Pipelines.Add("Resources",
+	CopyFiles("*").WithoutExtensions(".cshtml", ".md", ".less")
+);
