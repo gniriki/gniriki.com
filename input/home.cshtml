@@ -1,10 +1,45 @@
-<h1>Home</h1>
-<hr/>
-<p>Hi, this paragraph has a little bit about me.</p>
-<h2>Posts</h2>
-@foreach(var doc in Documents["Posts"].OrderBy(x => x["Title"]))
-{
-	<ul>
-		<li><a href="@doc["PostFile"]">@doc["Title"]</a> - @doc["Published"]</li>
-	</ul>
-}
+<!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('/Content/Blog/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            @foreach (var doc in Documents["Posts"].OrderBy(x => x["Title"]))
+            {
+
+                <div class="post-preview">
+                    <a href="@doc["PostFile"]">@doc["Title"]
+                    <h2 class="post-title">
+                        @doc["Title"]
+                    </h2>
+                    <h3 class="post-subtitle">
+                        @doc["Sub-Title"]
+                    </h3>
+                    </a>
+                    <p class="post-meta">Posted by @doc["Author"] on @doc["Published"]</p>
+                </div>
+                <hr>
+            }
+
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="next">
+                    <a href="#">Older Posts &rarr;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

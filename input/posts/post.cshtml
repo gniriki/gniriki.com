@@ -1,4 +1,25 @@
-<h1>@Metadata["Title"]</h1>
-<h2>@Metadata["Published"]</h2>
-<hr />
-@Html.Raw(Metadata["Post"])
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('/Content/Blog/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>@Metadata["Title"]</h1>
+                    <h2>@Metadata["Sub-Title"]</h2>
+                    <span class="meta">Posted by @Metadata["Author"] on @Metadata["Published"]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                @Html.Raw(Metadata["Post"])
+            </div>
+        </div>
+    </div>
+</article>
