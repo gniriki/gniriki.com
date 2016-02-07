@@ -6,17 +6,14 @@ Pipelines.Add("Posts",
 	ReadFiles(@"posts\Post.cshtml"),  // Load the Razor post page template
 	Razor(),  // Compile and render the page template
 	Excerpt(),
-	Excerpt("div#post-content")
-		.SetMetadataKey("PostContent")
-		.GetOuterHtml(false),
-	Meta("PostFile", string.Format(@"posts\{0}.html", ((string)@doc["Title"]).ToLower().Replace(' ', '-'))),  // Use the post title as the filename and save it in metadata so we can use it in links later
+	Meta("PostFile", string.Format(@"posts\{0}", ((string)@doc["Title"]).ToLower().Replace(' ', '-'))),  // Use the post title as the filename and save it in metadata so we can use it in links later
 	WriteFiles((string)@doc["PostFile"])  // Write the post file 
 );
 
 Pipelines.Add("Home",
 	ReadFiles(@"*.cshtml").FromTopDirectoryOnly().Where(x => System.IO.Path.GetFileName(x)[0] != '_'),
 	Razor(),
-	WriteFiles(".html")
+	WriteFiles("")
 );
 
 Pipelines.Add("Resources",

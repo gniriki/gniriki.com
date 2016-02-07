@@ -10,10 +10,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Hello</h1>
-                        <hr class="small">
-                        <span class="subheading">My name is Bartosz Borowiecki and I'm a .NET developer by day and game dev by night. 
-                            I created this blog to share with the dev community!</span>
+                        <h1>Archive</h1>
                     </div>
                 </div>
             </div>
@@ -25,8 +22,7 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             @foreach (var doc in Documents["Posts"]
             .Where(x => x.ContainsKey("Published"))
-            .OrderByDescending(x => x.Get<DateTime>("Published"))
-            .Take(5))
+            .OrderByDescending(x => x.Get<DateTime>("Published")))
             {
 
                 <div class="post-preview">
@@ -37,24 +33,11 @@
                     <h3 class="post-subtitle">
                         @doc["Lead"]
                     </h3>
-                    <p>
-                         @Html.Raw(doc.String("Excerpt"))
-                    </p>
                     </a>
                     <p class="post-meta">Posted on @doc["Published"]</p>
                 </div>
+                <hr>
             }
-            @if(Documents["Posts"].Count() > 5)
-            {
-            <hr>
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="archive">Older Posts &rarr;</a>
-                </li>
-            </ul>
-            }
-            
         </div>
     </div>
 </div>
