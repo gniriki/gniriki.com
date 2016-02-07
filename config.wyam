@@ -3,11 +3,13 @@ Pipelines.Add("Posts",
 	FrontMatter(Yaml()),  // Load any frontmatter and parse it as YAML markup
 	Markdown(),  // Render the markdown content
 	Meta("Post", @doc.Content),  // Move the markdown content to metadata
-	ReadFiles(@"posts\Post.cshtml"),  // Load the Razor post page template
+	Concat(
+		ReadFiles(@"posts\*.cshtml").Where(x => Path.GetFileName(x)[0] != '_' && Path.GetFileName(x) != "index.cshtml"),
+		FrontMatter(Yaml())		
+	),
 	Razor(),  // Compile and render the page template
 	Excerpt(),
-	Meta("PostFile", string.Format(@"posts\{0}", ((string)@doc["Title"]).ToLower().Replace(' ', '-'))),  // Use the post title as the filename and save it in metadata so we can use it in links later
-	WriteFiles((string)@doc["PostFile"])  // Write the post file 
+	WriteFiles("")  // Write the post file 
 );
 
 Pipelines.Add("Home",

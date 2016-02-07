@@ -1,5 +1,5 @@
 Published: 2016-02-06
-Title: Setting up a site and blog with static pages generator
+Title: Setting up a blog with static pages generator
 Lead: I've decided to start a blog so I can share back knowledge about dev stuff instead only relying on others.
 Author: Bartosz
 ---
