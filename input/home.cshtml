@@ -21,15 +21,18 @@
             {
 
                 <div class="post-preview">
-                    <a href="@doc["PostFile"]">@doc["Title"]
+                    <a href="@doc["PostFile"]">
                     <h2 class="post-title">
                         @doc["Title"]
                     </h2>
                     <h3 class="post-subtitle">
-                        @doc["Sub-Title"]
+                        @doc["Lead"]
                     </h3>
+                    <p>
+                         @Html.Raw(doc.String("Excerpt"))
+                    </p>
                     </a>
-                    <p class="post-meta">Posted by @doc["Author"] on @doc["Published"]</p>
+                    <p class="post-meta">Posted on @doc["Published"]</p>
                 </div>
                 <hr>
             }

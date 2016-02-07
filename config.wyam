@@ -5,6 +5,10 @@ Pipelines.Add("Posts",
 	Meta("Post", @doc.Content),  // Move the markdown content to metadata
 	ReadFiles(@"posts\Post.cshtml"),  // Load the Razor post page template
 	Razor(),  // Compile and render the page template
+	Excerpt(),
+	Excerpt("div#post-content")
+		.SetMetadataKey("PostContent")
+		.GetOuterHtml(false),
 	Meta("PostFile", string.Format(@"posts\{0}.html", ((string)@doc["Title"]).ToLower().Replace(' ', '-'))),  // Use the post title as the filename and save it in metadata so we can use it in links later
 	WriteFiles((string)@doc["PostFile"])  // Write the post file 
 );
