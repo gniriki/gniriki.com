@@ -1,26 +1,22 @@
 Published: 2016-02-06
 Title: Setting up a blog with static pages generator
-Lead: I've decided to start a blog so I can share back knowledge about dev stuff instead only relying on others.
+Lead: I've decided to start a blog so I can give back to the dev community. What could be better for the first post subject then setting up the blog itself? 
 Author: Bartosz
 ---
-I've decided to start a blog so I can share back knowledge about dev stuff 
-instead only relying on others. What could be a better subject for a first 
-post than setting up my blog itself? 
-I'm actually writing this as I set up my blog, so those first lines 
-are written as plain text in Notepad++!
 
-### Technology and platform
-
-I've always thought that dynamic pages are a bit of overkill for a 
-blog or a game dev company page. The content is pretty static, yet 
-every time someone access it, the server needs to process the whole thing. 
-Remember you first page? I remember mine - pure HTML, silly about 
-me page. No PHP, no ASP, no processing, nothing. I didn't even need a server - the browser just read the file from my hard drive! 
-Today we need a bit more to make a nice page and dynamic pages are 
-usually the way to go. 
+I've always thought that dynamic pages are a bit of overkill for creating a 
+blog or a company site. The content is pretty static (it's not like your posts change every 5 minutes), yet 
+every time it's accessed, the whole, big, complicated machine runs and sweats just to spit out almost the same response as 10 minutes ago. 
+Remember you first page? I remember mine - pure HTML, silly about me page. No PHP, no ASP, no processing, 
+nothing. It was a thing of pure, beautiful, simplicity - it didn't even need a server - the browser could just read the file from my hard drive! 
+And today? Simple sites need compiling, configuring, deploying and server resources to be shown to the reader! Wouldn't it be nice to go back? 
+To have a site that needs a static, cheapest available host only and only uses resources to read its files from a hard drive?
 
 #### Enter StaticGen
 
+All right, so I'm not saying go back to your notepad and create hundred HTML files for your posts and sites by hand so you could edit them 
+later one by one if you need to change the header. Frameworks 
+We use 
 The static generator does similar stuff as the dynamic page web server, but 
 the main difference is, they do it only once and locally. The output 
 from StaticGen is just raw HTML with some CSS files and maybe a js here and there. 
