@@ -12,25 +12,21 @@ nothing. It was a thing of pure, beautiful, simplicity - it didn't even need a s
 And today? Simple sites need compiling, configuring, deploying and server resources to be shown to the reader! Wouldn't it be nice to go back? 
 To have a site that needs a static, cheapest available host only and only uses resources to read its files from a hard drive?
 
-#### Enter StaticGen
+#### Static generators
 
-All right, so I'm not saying go back to your notepad and create hundred HTML files for your posts and sites by hand so you could edit them 
-later one by one if you need to change the header. Frameworks 
-We use 
-The static generator does similar stuff as the dynamic page web server, but 
-the main difference is, they do it only once and locally. The output 
-from StaticGen is just raw HTML with some CSS files and maybe a js here and there. 
-It doesn't need any more processing. You can open the site from your 
-hard drive or host it on drop box. They are secure (there is no 
-server running scripts) and lightweight. 
+All right, so I'm not saying go back to your notepad and create an HTML file for each of your post with the same header pasted in. 
+We use frameworks today, so we take advantage of templating, master pages, reusing code and content, etc. This is where static generator comes in.
+It will create the page for you using all of the above and more. So what's the difference? The difference is that we will run
+generator once and then deploy finished work on to the hosting. The output won't need any further processing, which means that 
+our site will be able to live on dropbox, S3 or any other static (and cheap) hosting. Having no scripts to run also increases the security by a lot.  
 
 #### Wyam
-There are many StaticGens today, most of worthy open source ones
-can be found on [Static gen site](https://www.staticgen.com/). I chose [Wyam](http://wyam.io/)
-because I'm a .NET dev so I can fiddle with code is needed and it will be working nicely on Windows, 
-compared to some others that need a lot of configuration to get 
-them running on Windows. I need something that is easy to set up and 
-run, so I won't be discouraged from writing by tools I use. 
+
+Static generators come in many types and flavors and most of interesting, open source ones
+can be found on [StaticGen.com](https://www.staticgen.com/). Aside from the features, the most important thing to look at is how hard
+it is to get it running and which platform does it run on. I've chosen [Wyam](http://wyam.io/), mainly because it's written it .NET and runs nicely 
+on Windows. The Wyam creator's [site/blog](http://daveaglick.com/) runs on it and it's source is available on 
+[github](https://github.com/daveaglick/daveaglick) and it helps a lot to have a working example available.
 
 ### Setting up my site
 
