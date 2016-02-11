@@ -18,13 +18,12 @@ BitCoin mining or something similar and that will ramp up your bill to few thous
 
 #### Root account
 
-You should never use your root account to manage your Amazon account. Never ever. Use 
-[IAM user](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) account instead. If someone gets your root account, you're done for, while
-an IAM account can always be disabled. So first step after creating AWS account is to 
-[create administrator IAM account](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). From this point onwards 
-don't use the root credentials!
-
-Phone
+You should never use your root(main) account to manage your Amazon account. Never ever. Use 
+[IAM user](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) account instead. If someone gets access to your root account, you're done for, while
+an IAM account can always be disable. So the first step after creating AWS account is to
+[create administrator IAM account](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Then secure your root account with 
+[Multi-factor authentication](https://aws.amazon.com/iam/details/mfa/) and leave it be.
+**From this point onwards don't use the root credentials unless you're in dire need!**
 
 #### Access keys
 To access your account through the web browser, you only need a user name and a password. If you want to access it programmaticaly
