@@ -27,6 +27,54 @@ an IAM account can always be disable. So the first step after creating AWS accou
 
 #### Access keys
 To access your account through the web browser, you only need a user name and a password. If you want to access it programmaticaly
-(f. e. from code or from console script) you will use `access key`. **You shoud never place keys in your repository!** There are
-web crawlers that specifically target repositories and look for access keys. Amazon does it too, so it can disable the key in question, but if
+(f. e. from code or from console script) you will use `access key`. **You should never place keys in your repository!** There are
+web crawlers that specifically target repositories and look for access keys. Amazon does it too, so it can disable keys made public, but if
 you're unlucky, it will be to late.
+
+### Configuring S3
+
+#### A bucket, good sir?
+Amazon S3 operates on XXX called `bucket`. Each one of them can be used to store files and you can apply access policies to them to control who or what can read or write
+to your bucket. To set up a site, you will need two of them: `domain.com` and `www.domain.com`. The first one will hold your site, while the second one will just point to
+the other so your site works with and without `www.`. 
+
+Go to your [Amazon S3 console](https://console.aws.amazon.com/s3/) and create those two buckets:
+
+s3-create-bucket.png
+
+Click on the newly created `domain.com` bucket and upload you website files.
+
+#### Configuring your bucket
+First, you'll need to make the bucket accessible for everybody for reading. From the bucket site in console switch to properties and 
+chose Permissions->Add bucket policy. Paste in this policy to add a read permission - **remember to adjust domain name as needed**:
+
+```
+{
+  "Version":"2012-10-17",
+  "Statement":[{
+	"Sid":"AddPerm",
+        "Effect":"Allow",
+	  "Principal": "*",
+      "Action":["s3:GetObject"],
+      "Resource":["arn:aws:s3:::domain.com/*"
+      ]
+    }
+  ]
+}
+```
+
+Beneath the `Permissions` you'll find `Static web hosting` configuration. Enable web site hosting and set Document properties accordingly:
+
+s3-static-web-hosting.png
+
+The last thing to do here is to config the other bucket (the one with `www.`) to redirect to your main bucket. That way, you won't need to upload your site twice.
+Open the second bucket configuration and choose redirect instead of Enabling Web Hosting:
+
+s3-second-bucket.png
+
+Now you can test you site by opening `Endpoint` address at the top of `Static web hosting` section!
+
+#### Configuring Route 53
+
+Your site should be up and running now, but it needs a better address than `domain.com.s3-website-us-east-1.amazonaws.com` or similar. To achieve that
+you need to configure Amazon Route 53 service. Open up [Route 53 console](https://console.aws.amazon.com/route53/) and go straight for 

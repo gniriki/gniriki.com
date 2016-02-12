@@ -9,13 +9,13 @@ Pipelines.Add("Posts",
 	),
 	Razor(),  // Compile and render the page template
 	Excerpt(),
-	WriteFiles("")  // Write the post file 
+	WriteFiles(".html")  // Write the post file 
 );
 
 Pipelines.Add("Home",
 	ReadFiles(@"*.cshtml").FromTopDirectoryOnly().Where(x => System.IO.Path.GetFileName(x)[0] != '_'),
 	Razor(),
-	WriteFiles("")
+	WriteFiles(".html")
 );
 
 Pipelines.Add("Resources",
