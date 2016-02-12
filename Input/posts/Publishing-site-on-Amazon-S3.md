@@ -31,9 +31,10 @@ To access your account through the web browser, you only need a user name and a 
 web crawlers that specifically target repositories and look for access keys. Amazon does it too, so it can disable keys made public, but if
 you're unlucky, it will be to late.
 
-### Configuring S3
+### Configuring Amazon Services
 
 #### A bucket, good sir?
+
 Amazon S3 operates on XXX called `bucket`. Each one of them can be used to store files and you can apply access policies to them to control who or what can read or write
 to your bucket. To set up a site, you will need two of them: `domain.com` and `www.domain.com`. The first one will hold your site, while the second one will just point to
 the other so your site works with and without `www.`. 
@@ -77,4 +78,23 @@ Now you can test you site by opening `Endpoint` address at the top of `Static we
 #### Configuring Route 53
 
 Your site should be up and running now, but it needs a better address than `domain.com.s3-website-us-east-1.amazonaws.com` or similar. To achieve that
-you need to configure Amazon Route 53 service. Open up [Route 53 console](https://console.aws.amazon.com/route53/) and go straight for 
+you need to configure Amazon Route 53 service. 
+
+First thing you need to set up is hosted zone. Route 53 uses it to store information about your domain. Open up [Route 53 console](https://console.aws.amazon.com/route53/) 
+nd go straight for DNS management. There, create a new hosted zone
+
+C:\Code\gniriki.com\input\content\posts\r53-create-zone.png
+
+Next, you'll create an alias for your bucket which will map your domain to the Amazon endpoint. You can do this by creating a new record set:
+
+C:\Code\gniriki.com\input\content\posts\r53-create-alias.png
+
+**Remember to creat an alias for both  buckets (`www.domain.com` and `domain.com`)**
+
+After you configure Route 53, the last step will be to configure Amazon as your DNS provider. This heavily depends on where you've registered your domain,
+so I leave you to that. DNS values to use can be found next to newly created hosted zone:
+
+C:\Code\gniriki.com\input\content\posts\r53-dns.png
+
+Cheers,
+Bartosz
