@@ -84,7 +84,7 @@ You can also create a simple BAT script which will run wyam:
 and place it in the main directory. Those two parameters will help you work with your site. `--preview` starts a local server
 which will serve our page on [localhost address](http://localhost:5080). `--watch` will keep Wyam running and any change done to the input directory or files will be automatically processed. 
 
-If everything went all right you should have a new output file for your post, though it may not look [nice](/Content/Posts/first-screen.png).
+If everything went all right you should have a new output file for your post, though it may not look [nice](/content/posts/first-screen.png).
 
 #### Adding some style
 
@@ -96,14 +96,14 @@ Throw in the newest [jQuery 2.x](https://jquery.com/download/) to the scripts fo
 
 Modify `_Layout.cshtml` so it references both bootstrap styles and scripts. 
 You can see how I did it [here](https://github.com/gniriki/gniriki.com/blob/91b5ff8765a31319ba9b97cc6ff986cff10f2eb2/input/_Layout.cshtml). 
-Voila, already looks a lot [better](/Content/Posts/bootstrap-basic.png).
+Voila, already looks a lot [better](/content/posts/bootstrap-basic.png).
 
 Let's spice up our blog a bit with a template - I've chosen the [Clean blog](http://startbootstrap.com/template-overviews/clean-blog/). 
 Download it, unpack and copy CSS, JS and Image files to your site. We'll use HTML files from the zip as an example showing how to modify our 
 files. You'll need to change the `_Layout`, `home` and `post` templates. (Check [this commit on Github](https://github.com/gniriki/gniriki.com/commit/fa753ba49b37fa376adc94481da66a7ad63fd49e) 
 to see how I did it).
 
-[A lot better!](/Content/Posts/clean-blog-basic.png)
+[A lot better!](/content/posts/clean-blog-basic.png)
 
 #### What next?
 

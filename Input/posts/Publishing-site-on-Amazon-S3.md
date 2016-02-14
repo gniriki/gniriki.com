@@ -18,8 +18,8 @@ BitCoin mining or something similar and that will ramp up your bill to few thous
 
 #### Root account
 
-You should never use your root(main) account to manage your Amazon account. Never ever. Use 
-[IAM user](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) account instead. If someone gets access to your root account, you're done for, while
+You should never use your root(main) account to manage your Amazon services. Never ever. Fortunalety, Amazon let's you create additional users account, called
+[IAM users](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html). If someone gets access to your root account, you're done for, while
 an IAM account can always be disabled. So the first step after creating AWS account is to
 [create administrator IAM account](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Then secure your root account with 
 [Multi-factor authentication](https://aws.amazon.com/iam/details/mfa/) and leave it be.
@@ -35,13 +35,13 @@ you're unlucky, it will be too late.
 
 #### A bucket, good sir?
 
-Amazon S3 operates on XXX called `bucket`. Each one of them can be used to store files and you can apply access policies to them to control who or what can read or write
+Amazon S3 operates on units called `buckets`. Each one of them can be used to store files and you can apply access policies to them to control who or what can read or write
 to your bucket. To set up a site, you will need two of them: `domain.com` and `www.domain.com`. The first one will hold your site while the second one will just point to
 the other so your site works with and without `www.`. 
 
 Go to your [Amazon S3 console](https://console.aws.amazon.com/s3/) and create those two buckets:
 
-s3-create-bucket.png
+![Create a bucket](/content/posts/s3-create-bucket.png)
 
 Click on the newly created `domain.com` bucket and upload you website files.
 
@@ -66,12 +66,13 @@ chose Permissions->Add bucket policy. Paste in this policy to add a read permiss
 
 Beneath the `Permissions` you'll find `Static web hosting` configuration. Enable website hosting and set Document properties accordingly:
 
-s3-static-web-hosting.png
+
+![Static web site hosting](/content/posts/s3-static-web-hosting.png)
 
 The last thing to do here is to config the other bucket (the one with `www.`) to redirect to your main bucket. That way, you won't need to upload your site twice.
 Open the second bucket configuration and choose redirect instead of Enabling Web Hosting:
 
-s3-second-bucket.png
+![Rediretcing bucket](/content/posts/s3-second-bucket.png)
 
 Now you can test your site by opening `Endpoint` address at the top of `Static web hosting` section!
 
@@ -83,18 +84,18 @@ you need to configure Amazon Route 53 service.
 The first thing you need to set up is hosted the zone. Route 53 uses it to store information about your domain. Open up [Route 53 console](https://console.aws.amazon.com/route53/) 
 nd go straight for DNS management. There, create a new hosted zone
 
-C:\Code\gniriki.com\input\content\posts\r53-create-zone.png
+![Create a zone](/content/posts/r53-create-zone.png)
 
 Next, you'll create an alias for your bucket which will map your domain to the Amazon endpoint. You can do this by creating a new record set:
 
-C:\Code\gniriki.com\input\content\posts\r53-create-alias.png
+![Create alias](/content/posts/r53-create-alias.png)
 
-**Remember to create an alias for both  buckets (`www.domain.com` and `domain.com`)**
+**Remember to create an alias for each bucket (`www.domain.com` and `domain.com`)**
 
 After you configure Route 53, the last step will be to configure Amazon as your DNS provider. This heavily depends on where you've registered your domain,
 so I leave you to that. DNS values to use can be found next to newly created hosted zone:
 
-C:\Code\gniriki.com\input\content\posts\r53-dns.png
+![DNS](/content/posts/r53-dns.png)
 
 Cheers,
 Bartosz
