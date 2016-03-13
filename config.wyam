@@ -12,6 +12,12 @@ Pipelines.Add("Posts",
 	WriteFiles("")  // Write the post file 
 );
 
+Pipelines.Add("Games",
+	ReadFiles(@"games\*.cshtml").Where(x => System.IO.Path.GetFileName(x)[0] != '_'),
+	Razor(),
+	WriteFiles("")
+);
+
 Pipelines.Add("Home",
 	ReadFiles(@"*.cshtml").FromTopDirectoryOnly().Where(x => System.IO.Path.GetFileName(x)[0] != '_'),
 	Razor(),
