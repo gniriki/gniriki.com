@@ -66,3 +66,8 @@ body
 {
     font-size: 30px;
 }
+
+.screens img
+{
+    border: solid 2px #0E234C
+}

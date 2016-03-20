@@ -1,7 +1,3 @@
-@{
-     
-}
-
 <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header" style="background-image: url('/content/blog/home-bg.jpg')">
@@ -9,9 +5,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Gniriki Games</h1>
-                        <hr class="small">
-                        <span class="subheading">A one-man game development adventure!</span>
+                        <h1>Archive</h1>
                     </div>
                 </div>
             </div>
@@ -21,11 +15,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <h1 class="text-center">News</h1>
-           @foreach (var doc in Documents["News"]
+            @foreach (var doc in Documents["News"]
             .Where(x => x.ContainsKey("Published"))
-            .OrderByDescending(x => x.Get<DateTime>("Published"))
-            .Take(5))
+            .OrderByDescending(x => x.Get<DateTime>("Published")))
             {
                 <div class="post-preview">
                     <p class="post-meta">Posted on @doc["Published"]</p>
@@ -36,17 +28,6 @@
                          @Html.Raw(doc.String("Excerpt"))
                 </div>
             }
-            @if(Documents["News"].Count() > 5)
-            {
-            <hr>
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="news-archive">Older News &rarr;</a>
-                </li>
-            </ul>
-            }
-            
         </div>
     </div>
 </div>

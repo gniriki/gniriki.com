@@ -12,6 +12,15 @@ Pipelines.Add("Posts",
 	WriteFiles("")  // Write the post file 
 );
 
+Pipelines.Add("News",
+	ReadFiles(@"news\*.md"),  // Read all markdown files in the "posts" directory
+	FrontMatter(Yaml()),  // Load any frontmatter and parse it as YAML markup
+	Markdown(),  // Render the markdown content
+    Meta("NewsContent", @doc.Content),
+    Razor(),
+    Excerpt()
+);
+
 Pipelines.Add("Games",
 	ReadFiles(@"games\*.cshtml").Where(x => System.IO.Path.GetFileName(x)[0] != '_'),
 	Razor(),
