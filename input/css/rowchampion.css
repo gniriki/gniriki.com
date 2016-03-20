@@ -1,4 +1,68 @@
 body {
     background: #304878 !important;
-    color: white !important;
+    color: #FFF2D9 !important;
+}
+
+.youtubeEmbed {
+	max-width: 90%;
+}
+
+@media screen and (max-width: 1280px) {
+	.youtubeEmbed{
+		width: 640px;
+		height: 360px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.youtubeEmbed{
+			width: 480px;
+			height: 270px;
+		}
+}
+
+@media screen and (max-width: 767px) {
+	.mainlogo
+    {
+        margin-top: 25px;
+    }
+}
+
+.fa-circle
+{
+    color: #FFF2D9 !important
+}
+
+.fa-inverse
+{
+    color:#734E0A !important;
+}
+
+.text-muted
+{
+    color: #C5D0E4 !important
+}
+
+footer a
+{
+    color: #FFF2D9
+}
+
+@media screen and (min-width: 768px) {
+.navbar-custom .nav li a
+{
+    color: #FFF2D9 !important
+}
+}
+
+@media screen and (max-width: 767px) {
+.navbar-custom .nav li a, .navbar-brand
+{
+    color: #304878 !important
+}
+}
+
+body
+{
+    font-size: 30px;
 }
