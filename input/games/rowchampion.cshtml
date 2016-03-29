@@ -4,7 +4,7 @@
 }
 
 <div class="container">
-    <div class="row">
+    <div class="row pixelFont">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
             <img class="img-responsive mainlogo" src="/content/games/rowchampion/mainlogo.png"/>
             <h1>Coming soon to Android devices near you!</h1>
@@ -28,8 +28,8 @@
      <br/>  
      <div class="row screens">
          <div class="col-lg-4 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-             <a href="/content/games/rowchampion/screen1.png" data-lightbox="image-1" data-title="My caption">
-                <img class="img-responsive" src="/content/games/rowchampion/screen1.png""/>
+             <a href="/content/games/rowchampion/boost_fire_2.gif" data-lightbox="image-1" data-title="Boost fire">
+                <img class="img-responsive" src="/content/games/rowchampion/boost_fire_2.gif""/>
              </a>
          </div>
          <div class="col-lg-4 col-lg-offset-0 col-md-10 col-md-offset-1 text-center">
@@ -61,4 +61,57 @@
              </a>
          </div>
      </div>
+     
+     <div class="pixels">
+        
+     </div>
+     
+     <script>
+         var source;
+         var create = true;
+         var id = 0;
+        $(document).ready(function() {
+            for (i = 0; i < 150; i++) { 
+               setTimeout(function() { createNew(); }, i * 100);
+            }
+        });
+        
+        var getRandom = function(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        
+        var createNew = function()
+        {
+            var x = getRandom(10,$(window).width()-50);
+            var y = getRandom(10,$(document).height()-10);
+            var newPixel = $('<div id="water_' + id + '" class="water-pixel"></div>');
+            id=id+1;
+            $('.pixels').append(newPixel);
+            newPixel.css('top', y);
+            newPixel.css('left', x);
+            newPixel.sprite({
+                fps: 2,
+                no_of_frames: 3,
+                on_last_frame: function(obj) {
+                    //
+                    
+                    //if(create == true)
+                    {
+                        createNew();
+                        
+                        create = false;
+                    }
+                    obj.destroy();
+                    obj.remove();
+                    //obj.spStop();
+                }});
+            newPixel.animate({
+                left: "+=100"
+              }, 5000, function() {
+   
+            });
+        }
+        
+     </script>
 </div>
+

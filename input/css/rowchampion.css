@@ -1,6 +1,37 @@
+@font-face {
+    font-family: 'PixelFont'; /*a name to be used later*/
+    src: url('/fonts/ka1.ttf'); /*URL to font*/
+}
+
 body {
+    font-family: 'PixelFont' !important;
     background: #304878 !important;
     color: #FFF2D9 !important;
+}
+
+.water-pixel
+{
+    background: transparent url(/content/games/rowchampion/water_pixel.png) 0 0 no-repeat;
+	position: absolute;
+	top: 150px;
+	left: 65px;
+	width: 1px;
+	height: 1px;
+	z-index: -2000;
+	cursor: pointer;
+    transform: scale(10,10);
+}
+
+h1
+{
+    font-family: 'PixelFont' !important;
+    letter-spacing: 2px;
+    color: #FFF2D9 !important;
+}
+
+p a{
+    text-decoration: none;
+    font-weight: normal;
 }
 
 .youtubeEmbed {
