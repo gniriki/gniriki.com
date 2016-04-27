@@ -54,6 +54,9 @@
     ga('create', 'UA-73446019-1', 'auto');
     ga('send', 'pageview');
     </script>
+    
+    
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -161,6 +164,55 @@
     <!-- jQuery -->
     
     <script src="/js/lightbox.min.js"></script>
+
+         
+     <script> 
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));
+
+    // Define Call Back Functions
+        function clickEventToAnalytics() {
+            ga('send', 'social', 'Twitter', 'Click', window.location.href);
+        }
+
+        function tweetIntentToAnalytics() {
+            ga('send', 'social', 'Twitter', 'Tweet', window.location.href);
+        }
+
+        function retweetIntentToAnalytics() {
+            ga('send', 'social', 'Twitter', 'Retweet', window.location.href);
+        }
+
+        function followIntentToAnalytics() {
+            ga('send', 'social', 'Twitter', 'Follow', window.location.href);
+        }
+
+        // Bind Twitter events to Call Back Functions
+        if (typeof twttr !== 'undefined') {
+            twttr.ready(function (twttr) {
+
+            twttr.events.bind('click', clickEventToAnalytics);  
+	        twttr.events.bind('tweet', tweetIntentToAnalytics);
+	        twttr.events.bind('retweet', retweetIntentToAnalytics);
+	        twttr.events.bind('follow', followIntentToAnalytics);
+        });
+    }
+
+    </script>
 
 </body>
 </html>
