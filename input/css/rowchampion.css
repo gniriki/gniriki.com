@@ -22,6 +22,11 @@ body {
     transform: scale(10,10);
 }
 
+.play-store
+{
+	cursor: pointer;
+}
+
 h1
 {
     font-family: 'PixelFont' !important;
@@ -50,6 +55,27 @@ p a{
 			width: 480px;
 			height: 270px;
 		}
+}
+
+@media screen and (max-width: 1199px) 
+{      
+    .md-margin-top
+    {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 992px) 
+{      
+    .xs-margin-top
+    {
+        margin-top: 40px;
+    }
+      
+    .img-gif
+    {
+        display: inherit;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -82,7 +108,7 @@ footer a
 @media screen and (min-width: 768px) {
 .navbar-custom .nav li a
 {
-    color: #FFF2D9 !important
+    
 }
 }
 
@@ -101,4 +127,16 @@ body
 .screens img
 {
     border: solid 2px #0E234C
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-weight: normal;
+}
+
+.navbar-custom .nav li a, .navbar-custom .navbar-brand
+{
+    font-family: 'PixelFont' !important;
+    letter-spacing: 2px;
+    font-weight: 300 !important;
 }
