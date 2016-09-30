@@ -1,10 +1,5 @@
-<<<<<<< HEAD:input/posts/Row-Champion-Premortem.md
 Published: 2016-xx-xx
-Title: Row Champion Premortem
-=======
-Published: 2016-08-21
 Title: Row Champion Retrospective
->>>>>>> 5aaca59f9013ed4090105bf59066a065b89c2f09:Input/posts/Row-Champion-Retrospective.md
 Lead: Row Champion is finally complete, so it's time to do some self-examination
 Author: Bartosz
 ---
@@ -75,9 +70,8 @@ All in all I'm very happy with RC. I did some mistakes, but learned a lot. Hopef
 4. Mutliplayer - time sink, game took 3x more time because of it, could''ve done 2 more games... A lot of time needed for setting up everything and some money for upkeep.
 5. Writer's block. Afraid of publishing/reactions
 6. Conclusions; TL;DR
-<<<<<<< HEAD:input/posts/Row-Champion-Premortem.md
-=======
+
 
 x. Torches - everybody thougth that fire + line is torch. Think more about possible interpretations
 x. Boost confusion - sync was problem (why one fills when others don't), when to hit boost? Overall boost is a mess, UI and mechanic wise. 
->>>>>>> 5aaca59f9013ed4090105bf59066a065b89c2f09:Input/posts/Row-Champion-Retrospective.md
+
