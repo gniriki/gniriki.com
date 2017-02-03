@@ -9,74 +9,61 @@ adventure with Silly Ghosts. This time I had a plan and the idea seemed really g
 Check. Touch control and quick and clear feedback. Check. Simple, one screen game that I can do in my free time. Check.
 Small number of assets to create. Check. Nothing can go wrong. Check?
 
-Schedule!!!
-
 ### The idea or meh idea?
 
-It doesn't matter. It's the execution that counts the most. Thing is, blinded by the greatness of my idea, I dismissed problems with execution,
-thinking that the idea will somehow overshadow those problems. When I presented my first prototype to my
-friends I could see that they had a problem with getting the hang of it - some of them tried to swipe really fast and some of them had bad 
-timing. I dismissed it, thinking that they just need a tutorial.
+Someone told me it's not idea that matter but the execution. I wish I've listened.
+Problem was, blinded by the 'greatness' of my idea, I dismissed problems with execution,
+thinking that the idea/gameplay will somehow defend itself. When I presented my first prototype to my
+friends I could see that they had problems with getting the hang of it - some of them tried to swipe really fast and some of them had bad 
+timing, but I dismissed it, thinking that all they just need a tutorial.
 
-Well, the tutorial didn't help. 
+### Your own experience
 
-### Prototype?
+My main problem was that I didn't take my experience and knowledge about the game into the account. Everything about touch control was clear as day and night for me. 
+And only for me. I knew how far the paddle should swing, I knew when to start the swing and I knew how to do the best swing.
+I've created the prototype, but I didn't use it as I should - to test what works and what doesn't is one thing. To observe how others play with your game is another. 
+Instead of thinking more about why my friends are failing at playing my game, I've happily started to put hour after hour of development time into my game. 
+Only when I've finished single player mode, I emerged from my cave to show my work to others again. That's far too late and the response was meh...
 
-My main problem was that I didn't take my experience and knowledge about the game into account. Everything about touch control was clear as day for me. 
-I knew how far the paddle should swing, I knew when to start the swing and I knew how to do the best swing. Others? Not so much. 
-I've created the prototype, yes, but I didn't use it as I should - to test ideas and throw out the bad ones. 
-Instead of thinking more about why my friends are failing, I've happily started to put hour and hours of development time into my game. 
-I've finished single player mode and than showed my work to others again. And the response was meh...
+### Bad game? Add features! (Kids, don't do try at home.)
 
-### Bad game? Add features!
+So what do you do when your game is failing? You add features. I came to a conclusion that multiplayer would be awesome. I know right, the best idea ever, 
+peoples love multiplayers. "I bet everybody will play my game in multiplayer mode when they see it." I thought. So I extended my schedule and started coding again. 
+The main problem was, my code wasn't ready for multiplayer. Yeah, I could've probably hack it together (and I should have), but I've decided that it's high time for rewrite.  
+So I extended my schedule and started coding again. Yep, threw my tried and tested, bug free code to the trash and have written it again from scratch. 
+It took me around 25 hours. Twenty five hours! And then some more, fixing bugs and adjusting it again.
 
-So what do you do when your game is failing? You add a multiplayer. I know right? Best idea ever, peoples love multiplayers. I bet everybody will play my game
-in multiplayer mode when they see it. So I extended my schedule and started coding again. The main problem was, my boat code wasn;t really planned for it. 
-Yeah, I could've hack it probably together, but I've decided that it's high time for rewrite. Yep, threw my tried and tested, bug free code to the trash and
-have written it from the beggining. It took me around 25h. And then some more fixing bugs. Kids, don't do this at home. Anyway...
+Now, don't get me wrong. Mutliplayer can be a great feature. It's also fun to code - I've learned a lot, really, but it took a long time... really long time. 
+So after toiling away for the next 6 months of evenings, I showed everybody my game again, waiting for the world to be amazed. Well, let say the world was not that amazed.
 
-Mutliplayer is a great feature to code. I've learned a lot, really. And it took a long time... really. So after toiling away for the next 6 months of evenings,
-I showed everybody my game, waiting for the world to be amazed. Well, let say the world was not amazed.
-
-//Servers etc, money
+Another thing that I didn't forsee are multiplayer costs. You have to set up, test and then support the server. Hosting isn't free either.
 
 ### Fixing the design
 
 So, now I was knee deep in my game, I couldn't just walk away. So, with the help of r/gamedev and feedback friday and starded fixing the controls and UI. 
 Everytime I've changed the core design, I had to adjust multiplayer and sometimes graphics and UI. Over a few months I went through many interations like that. 
-I can't image how much time I've lost reworking the same stuff over and over again. 
-
-### The light
-
-Finally after toiling away some more, I've started to get some positive reactions. I arrived at the very important moment, where people said - 
-that's a good game or that's a bad game, instead of I don't know what's going on. Yeah, some people said it was boring or that it offered to little content, 
-but that's a proper response too. Not everybody will like your game, but they should dislike it as a personal preference, not because they don' get it.
+I can't image how much time I've lost reworking the same stuff over and over again.  inally after toiling away some more, I've started to get some positive reactions. 
+I arrived at the very important moment, where people said - 
+"that's a good game" or "that's a bad game", instead of I don't know what's going on. Yeah, some people said it was boring or that it offered too little content for them, 
+but those are good responses too. Not everybody will like your game, but they should dislike it because of a personal preference, not because they don' get it.
 
 ### Lessons
 
-Do a prototype and use it properly
-Create a schedule and stick to it
-Don't try to hide shortcomings by adding new features, fix them
-Don't use the prototype code and
+Overall, it was one hell of a ride. I hated working on it near the end and I wanted to just leave it and start working on something new.
+I regret many things about this project, but at least I got a really great lesson out of it. A few of them actually. 
+
+TL;DR; (or 'Note to self - do not make the same mistakes again')
+
+Create a prototype and 
+Use it properly (test ideas but also test people reactions)
+Think about how your ideas might be interpeted by others
+Create a schedule and stick to it (I mean it!)
+Don't try to hide shortcomings by adding new features, fix them or scrap'em
+Scrap the prototype code and write new, clean one for the game or
 Don't rewrite core code in the middle of project
 Multiplayer is a great feature, but resource heavy (time, money)
 
 ### What's next
 
-All in all I'm very happy with RC. I did some mistakes, but learned a lot. Hopefully I won't forget those lessons when I start my next project.
-
-2. Idea - why this one, prototype, mistakes. Why trying to enhance/fix this wasn't the best idea. Costly attachment to project etc.
-3. Execution - prototype was used mistake, refactoring/rewriting mistake, bad time predictions. Unity is good but bugged.
-4. Mutliplayer - time sink, game took 3x more time because of it, could''ve done 2 more games... A lot of time needed for setting up everything and some money for upkeep.
-5. Writer's block. Afraid of publishing/reactions
-6. Conclusions; TL;DR
-
-
 x. Torches - everybody thougth that fire + line is torch. Think more about possible interpretations
 x. Boost confusion - sync was problem (why one fills when others don't), when to hit boost? Overall boost is a mess, UI and mechanic wise. 
-
-Write about tutorial - a lot of work, removed almost all of it. Full tutorial Tutorial should be last thing, maybe include a text manual/info about the game.
-
-
-!!! 2 lata pracy, powinno byc 3, z online 9, dlugo bo po pracy, bo niechec trzeba planowac malo
-!! Przez to ze 2 lata za duzo bylo komibnowania, nie do konca zadowolony ze sterowania. Moze na poczatku bylo ciezej zalapac ale chyba przyjemniej sie gralo...
