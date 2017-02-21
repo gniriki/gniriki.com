@@ -11,15 +11,15 @@ body {
 
 .water-pixel
 {
-    background: transparent url(/content/games/rowchampion/water_pixel.png) 0 0 no-repeat;
+    background: transparent url(/content/games/rowchampion/water_pixel_med.png) 0 0 no-repeat;
 	position: absolute;
 	top: 150px;
 	left: 65px;
-	width: 1px;
-	height: 1px;
+	width: 5px;
+	height: 5px;
 	z-index: -2000;
 	cursor: pointer;
-    transform: scale(10,10);
+    /*transform: scale(10,10);*/
 }
 
 .play-store
