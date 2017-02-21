@@ -1,4 +1,4 @@
-Published: 2016-04-10
+Published: 2016-10-04
 Title: Getting more time for my projects
 Lead: One of the biggest obstacles when creating a game is having too little resources. If you work a 9-5 job, you'll have little time left for your projects. If you don't, your savings will deplete really fast. 
 Author: Bartosz
