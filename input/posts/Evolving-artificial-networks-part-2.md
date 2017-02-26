@@ -71,5 +71,64 @@ to extend out ANN in the future.
 
 ### Coded to evolve
 
+Next we'll create the code that we'll be able to 'evolve' our neural network. Evolution in this case will be pretty simple - we have only one gene (the weight) so
+we won't use to parents to mix the genes. We're just going to mutate the best one to create some offspring.
+
+First step is to create the initial pool of ANNs.
+
+```c#
+public class Pool
+    {
+        private int _numberOfSpecimens;
+        private List<Specimen> _specimens = new List<Specimen>();
+        private Random _rand = new Random();
+
+        public Pool(int numberOfSpecimens)
+        {
+            _numberOfSpecimens = numberOfSpecimens;
+            CreateInitialPool();
+        }
+
+        private void CreateInitialPool()
+        {
+            for (int i = 0; i < _numberOfSpecimens; i++)
+            {
+                var specimen = new Specimen();
+
+                specimen.Brain = new NeuralNetwork();
+
+                var randomWeight = (float)_rand.NextDouble() - 0.5f * 2f;
+                new NeuralNetwork().SetWeights(randomWeight);
+
+                _specimens.Add(specimen);
+            }
+        }
+    }
+```
+
+The next step is to give the input to the each specimen and calulate its fitness - the closer the output is to the expected value the greater the fitness, with 1 being the 
+best fitness we can get. We'll feed the whole simulation with a list of inputs and expected outputs and calculate the average error.
+
+```c#
+private float CalculateFitness(float[] input, float[] expectedOutput, NeuralNetwork neuralNetwork)
+        {
+            float error = 0;
+
+            var numberOfInputs = input.Length;
+
+            for (int i = 0; i < numberOfInputs; i++)
+            {
+                neuralNetwork.Process(input[i]);
+                var actualOutput = neuralNetwork.GetOutput();
+                error += Math.Abs(expectedOutput[i] - actualOutput);
+            }
+
+            return 1 - error / numberOfInputs;
+        }
+```
+
+With the fitness of every NN in the pool calculated, we can sort them and us the best one to create the offspring.
+
+
 
 
