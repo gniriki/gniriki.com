@@ -24,50 +24,60 @@ also create the NeuralNetwork class to hold our neuron (and more neurons in the 
 ```c#
     public class Neuron
     {
-        public float Weight;
+        public double Weight;
 
-        public float Output;
+        public double Output;
 
-        public void Process(float input)
+        public void Process(double input)
         {
-            Output = input * Weight;
+            var sum = input * Weight;
+            Output = Sigmoid(sum);
         }
+
+        private double Sigmoid(double value)
+        {
+            return 1 / (1 + Math.Exp(-value));
+        }
+
     }
 
     public class NeuralNetwork
     {
         private readonly Neuron _outputNeuron;
+        private double[] _weights;
 
         public NeuralNetwork()
         {
             _outputNeuron = new Neuron();
         }
 
-        public void Process(float input)
+        public void Process(double input)
         {
             _outputNeuron.Process(input);
         }
 
-        public float GetOutput()
+        public double GetOutput()
         {
             return _outputNeuron.Output;
         }
 
-        public void SetWeights(float weight)
+        public void SetWeights(double[] weights)
         {
-            _outputNeuron.Weight = weight;
+            _weights = weights;
+            _outputNeuron.Weight = weights[0];
         }
 
-        public float GetWeights()
+        public double[] GetWeights()
         {
-            return _outputNeuron.Weight;
+            return _weights;
         }
     }
 ```
 
 So the gist of our ANN is the Process() method of the neuron. As you see it takes the input and multiplies it by the weight it holds for that input. Right know 
-there is only one input so we need only one weight. We could is the neuron itselft for our computations but I've wrapped it up into a NeuralNetwork class so it's easier
-to extend out ANN in the future. 
+there is only one input so we need only one weight. Then we pass the sum through the sigmoid function to squash it nicely between 0 and 1. 
+We could use the neuron itself as our first ANN but I've wrapped it up into a NeuralNetwork class so it's easier
+to work with it in the future. 
 
 ### Coded to evolve
 
@@ -79,9 +89,11 @@ First step is to create the initial pool of ANNs.
 ```c#
 public class Pool
     {
-        private int _numberOfSpecimens;
-        private List<Specimen> _specimens = new List<Specimen>();
-        private Random _rand = new Random();
+        private readonly int _numberOfSpecimens;
+        private readonly List<Specimen> _specimens = new List<Specimen>();
+        private readonly List<SpecimenFitness> _fitness = new List<SpecimenFitness>();
+        private readonly Random _rand = new Random();
+        private double _mutationRate = 0.5f;
 
         public Pool(int numberOfSpecimens)
         {
@@ -97,8 +109,8 @@ public class Pool
 
                 specimen.Brain = new NeuralNetwork();
 
-                var randomWeight = (float)_rand.NextDouble() - 0.5f * 2f;
-                new NeuralNetwork().SetWeights(randomWeight);
+                var randomWeight = ((double)_rand.NextDouble() - 0.5f) * 2f;
+                specimen.Brain.SetWeights(new double[] { randomWeight });
 
                 _specimens.Add(specimen);
             }
@@ -106,13 +118,30 @@ public class Pool
     }
 ```
 
-The next step is to give the input to the each specimen and calulate its fitness - the closer the output is to the expected value the greater the fitness, with 1 being the 
+The connection (synapse) can be wyzwalajace or zmniejszajace wyzwalanie, that's why I modified the random number to fit between -1 and 1. 
+The next step is to pass the input to the each specimen and calulate its fitness - the closer the output is to the expected value the greater the fitness, with 1 being the 
 best fitness we can get. We'll feed the whole simulation with a list of inputs and expected outputs and calculate the average error.
 
 ```c#
-private float CalculateFitness(float[] input, float[] expectedOutput, NeuralNetwork neuralNetwork)
+public class Pool
+    {
+        ...
+private readonly List<SpecimenFitness> _fitness = new List<SpecimenFitness>();
+
+public void CalculateFitness(double[] input, double[] expectedOutput)
         {
-            float error = 0;
+            _fitness.Clear();
+            foreach (var specimen in _specimens)
+            {
+                var fitness = CalculateFitness(input, expectedOutput, specimen.Brain);
+                var specimentFitness = new SpecimenFitness(specimen, fitness);
+                _fitness.Add(specimentFitness);
+            }
+        }
+
+private double CalculateFitness(double[] input, double[] expectedOutput, NeuralNetwork neuralNetwork)
+        {
+            double error = 0;
 
             var numberOfInputs = input.Length;
 
@@ -123,12 +152,214 @@ private float CalculateFitness(float[] input, float[] expectedOutput, NeuralNetw
                 error += Math.Abs(expectedOutput[i] - actualOutput);
             }
 
-            return 1 - error / numberOfInputs;
+            return 1 - (error / numberOfInputs);
         }
+        ...
 ```
 
-With the fitness of every NN in the pool calculated, we can sort them and us the best one to create the offspring.
+With the fitness of every NN in the pool calculated, we'll be able sort them and use the best one to create the offspring. We have only one gene now (one weight),
+so we won't use 2 parents and create the offspring by mutating the one specimen. Each child will get a new weight that is randomily incresed or decreased compared to 
+the parent. 
+
+```c#
+public class Pool
+    {
+        ...
+
+        private double _mutationRate = 0.5f;
+
+         public void CreateChildPool(Specimen parent)
+        {
+            for (int i = 0; i < _numberOfSpecimens; i++)
+            {
+                var parentWeights = parent.Brain.GetWeights();
+                var mutated = Mutate(parentWeights);
+                _specimens[i].Brain.SetWeights(mutated);
+            }
+        }
+
+        private double[] Mutate(double[] parentWeights)
+        {
+            var change = ((double)_rand.NextDouble() - 0.5f) * 2f;
+            var mutated = new double[parentWeights.Length];
+
+            for (int i = 0; i < parentWeights.Length; i++)
+                mutated[i] = parentWeights[i] + change * _mutationRate * parentWeights[i];
+
+            return mutated;
+        }
+        ...
+```
+
+Having all of the basic blocks together, we can create the main evolution loop:
 
 
+```c#
+public class EvolutionSimulator
+    {
+        private readonly Pool _pool;
+
+        private double[] _inputs;
+        private double[] _expectedOutputs;
+
+        private int _numberOfSpecimens = 100;
+
+        public EvolutionSimulator()
+        {
+            _pool = new Pool(_numberOfSpecimens);
+
+            _inputs = new double[] { -5f, -4f, -3.24f, -1.4f, -0.5f, -0.1f, 0.1f, 0.4f, 1.4f, 2.5f, 4.5f, 5.5f, 7.5f };
+            _expectedOutputs = new double[_inputs.Length];
+            for (int i = 0; i < _inputs.Length; i++)
+            {
+                _expectedOutputs[i] = _inputs[i] > 0 ? 1 : 0;
+            }
+        }
+
+        public void Simulate()
+        {
+            int generation = 0;
+            double fitness = 0;
+            SpecimenFitness specimenFitness = null;
+
+            while (fitness < 0.9999f && generation < 1000)
+            {
+                _pool.CalculateFitness(_inputs, _expectedOutputs);
+                specimenFitness = _pool.GetBestSpecimen();
+                fitness = specimenFitness.Fitness;
+                _pool.CreateChildPool(specimenFitness.Specimen);
+
+                Console.WriteLine($"Generation {generation}, best fitness: {specimenFitness.Fitness}");
+                generation++;
+            }
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Number (hit return to exit):");
+                    string number = Console.ReadLine();
+                    if (string.IsNullOrEmpty(number))
+                        break;
+                    double parsed = double.Parse(number);
+
+                    specimenFitness.Specimen.Brain.Process(parsed);
+                    Console.WriteLine(specimenFitness.Specimen.Brain.GetOutput());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("err");
+                }
+            }
+        }
+    }
+```
+
+I've defined two stop values here, so we don't end up with neverending loop - we'll stop the simulation if the fitness is higher than 0,9999 or when we hit generation 1000.
+In each loop we calculate the fitness, choose the best specimen and use it to generate new pool. At the end of the simulate method we'll add a small loop so we can 
+test the best speciman evolved by the algorithm.
 
 
+```c#
+public class EvolutionSimulator
+    {
+        ...
+        public void Simulate()
+        {
+            ...
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Number (enter nothing to exit):");
+                    string number = Console.ReadLine();
+                    if (string.IsNullOrEmpty(number))
+                        break;
+                    double parsed = double.Parse(number);
+
+                    specimenFitness.Specimen.Brain.Process(parsed);
+                    Console.WriteLine(specimenFitness.Specimen.Brain.GetOutput());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("err");
+                }
+            }
+        }
+    }
+```
+
+The simulation ends pretty quickly - I get a good enough specimen around 10th generation. 
+
+### Biased networks
+
+One thing that's missing from the code is the Bias. Imagine you want the network to be able to discern if the number is greater or less than 4. 
+Let's modify our test data then:
+
+```c#
+
+_inputs = new double[] { -5f, -4f, -3.24f, -1.4f, -0.5f, -0.1f, 0.1f, 0.4f, 1.4f, 2.5f, 4.5f, 5.5f, 7.5f };
+_expectedOutputs = new double[_inputs.Length];
+for (int i = 0; i < _inputs.Length; i++)
+{
+     _expectedOutputs[i] = _inputs[i] > 4 ? 1 : 0;
+}
+
+```
+
+The simulation can't create a specimen that works as expected at all! The best fitness I got is ~0.7 and it gives me the wrong outputs for numbers like 0, 2, 2.5 etc.
+This is where bias comes in. Without it, each neuron of our network can produce a meaningfull output only for the data close to 0 (because sigmoid function). 
+The bias allows the neuron to shift the activation function left or right so it can operate on different range of inputs. Let's modify the code to include 
+the bias in our calculation and mutation:
+
+```c#
+public class Neuron
+    {
+...
+        public double Bias;
+
+        public void Process(double input)
+        {
+            var sum = input * Weight + Bias; // We add the bias to shift the function
+            Output = Sigmoid(sum);
+        }
+...
+
+public class NeuralNetwork
+    {
+...
+        public void SetWeights(double[] weights)
+        {
+            _weights = weights;
+            _outputNeuron.Weight = weights[0];
+            _outputNeuron.Bias = weights[weights.Length - 1];   // The last weight in the weight array will be always a bias
+        }
+...
+    }
+
+public class Pool
+    {
+        ...
+private void CreateInitialPool()
+        {
+            for (int i = 0; i < _numberOfSpecimens; i++)
+            {
+                var specimen = new Specimen();
+
+                specimen.Brain = new NeuralNetwork();
+
+                var randomWeight = ((double)_rand.NextDouble() - 0.5f) * 2f;
+                var randomBias = ((double)_rand.NextDouble() - 0.5f) * 2f;
+
+                specimen.Brain.SetWeights(new double[] {randomWeight, randomBias });
+
+                _specimens.Add(specimen);
+            }
+        }
+        ...
+    }
+```
+
+With the bias in place, our algorithm is able to evolve a specimen that solves our problem. 
+
+In the next part we're going to increase complexity by adding more inputs and tackle the evolutionary dead end problem. 
