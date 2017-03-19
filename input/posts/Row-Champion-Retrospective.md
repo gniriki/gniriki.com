@@ -1,4 +1,4 @@
-Published: 2017-02-22
+Published: 2017-03-17
 Title: Row Champion Retrospective
 Lead: Row Champion is finally complete, so it's time to do some self-examination
 Author: Bartosz

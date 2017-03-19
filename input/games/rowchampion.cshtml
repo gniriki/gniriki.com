@@ -102,8 +102,8 @@
          var create = true;
          var id = 0;
         $(document).ready(function() {
-            for (i = 0; i < 150; i++) { 
-               setTimeout(function() { createNew(); }, i * 100);
+            for (i = 0; i < 350; i++) { 
+               setTimeout(function() { createNew(); }, i * 10);
             }
         });
         
@@ -132,7 +132,7 @@
                 on_last_frame: function(obj) {
                     newPixel.spStop();
                     newPixel.remove();
-                    newPixel.destroy();
+                    //newPixel.destroy();
                     createNew();
                 }});
             newPixel.animate({
