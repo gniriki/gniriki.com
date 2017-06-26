@@ -2,6 +2,8 @@ Published: 2017-03-17
 Title: Row Champion Retrospective
 Lead: Row Champion is finally complete, so it's time to do some self-examination
 Author: Bartosz
+Tags:
+  - Games
 ---
 
 It supposed to be a short, simple project. That was what I've planned, especially after my previous this-takes-so-long-that-I-already-hate-it 

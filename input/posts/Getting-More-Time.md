@@ -2,6 +2,8 @@ Published: 2016-10-04
 Title: Getting more time for my projects
 Lead: One of the biggest obstacles when creating a game is having too little resources. If you work a 9-5 job, you'll have little time left for your projects. If you don't, your savings will deplete really fast. 
 Author: Bartosz
+Tags:
+  - Freelancing
 ---
 
 [Row Champion](/games/rowchampion) was supposed to be a quick, 3 months long project. It's been almost 2 years now in the making. The thing is, according to my notes, I've worked on it only for about 300 hours, so around 2 months... had I worked on it 9-5. I would like to support myself with game dev someday so I need to get more games out and create a name for myself. These numbers don't predict that happening anytime soon. Between my 9-5 job, family and life, there is just too little time to do something meaningful.

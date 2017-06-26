@@ -1,38 +1,7 @@
-Pipelines.Add("Posts",
-	ReadFiles(@"posts\*.md"),  // Read all markdown files in the "posts" directory
-	FrontMatter(Yaml()),  // Load any frontmatter and parse it as YAML markup
-	Markdown(),  // Render the markdown content
-	Meta("Post", @doc.Content),  // Move the markdown content to metadata
-	Concat(
-		ReadFiles(@"posts\*.cshtml").Where(x => Path.GetFileName(x)[0] != '_' && Path.GetFileName(x) != "index.cshtml"),
-		FrontMatter(Yaml())		
-	),
-	Razor(),  // Compile and render the page template
-	Excerpt(),
-	WriteFiles("")  // Write the post file 
-);
+#recipe Blog
+#theme CleanBlog
 
-Pipelines.Add("News",
-	ReadFiles(@"news\*.md"),  // Read all markdown files in the "posts" directory
-	FrontMatter(Yaml()),  // Load any frontmatter and parse it as YAML markup
-	Markdown(),  // Render the markdown content
-    Meta("NewsContent", @doc.Content),
-    Razor(),
-    Excerpt()
-);
-
-Pipelines.Add("Games",
-	ReadFiles(@"games\*.cshtml").Where(x => System.IO.Path.GetFileName(x)[0] != '_'),
-	Razor(),
-	WriteFiles("")
-);
-
-Pipelines.Add("Home",
-	ReadFiles(@"*.cshtml").FromTopDirectoryOnly().Where(x => System.IO.Path.GetFileName(x)[0] != '_'),
-	Razor(),
-	WriteFiles("")
-);
-
-Pipelines.Add("Resources",
-	CopyFiles("*").WithoutExtensions(".cshtml", ".md", ".less")
-);
+Settings[Keys.Host] = "gniriki.com";
+Settings[BlogKeys.Title] = "Gniriki Games";
+Settings[BlogKeys.Description] = "Gniriki Games";
+Settings[BlogKeys.Intro] = "My name is Bartosz Borowiecki and I'm game and .NET developer. I created this blog to write about the things I'm creating and the things I learned, so others can benefit from it.";

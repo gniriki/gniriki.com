@@ -2,6 +2,9 @@ Published: 2016-02-06
 Title: Setting up a blog with static page generator
 Lead: I've decided to start a blog so I can share with the dev community. What could be better for the first post subject then setting up the blog itself? 
 Author: Bartosz
+Tags:
+  - Wyam
+  - Blog
 ---
 
 As I started thinking about creating my own blog, the first question that popped up in my mind: where to host it? I've looked into

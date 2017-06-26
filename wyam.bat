@@ -1,1 +1,0 @@
-.\Wyam\build\0.11.2-beta\bin\wyam.exe --preview --watch

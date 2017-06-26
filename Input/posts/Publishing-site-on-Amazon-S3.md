@@ -2,6 +2,10 @@ Published: 2016-02-11
 Title: Publishing your static site on Amazon S3
 Lead: So you've spent a lot of time to create a site or a blog. Now we need to publish it, so everybody can see it!
 Author: Bartosz
+Tags:
+  - Amazon
+  - S3
+  - Blog
 ---
 
 In my [last post](/posts/Setting-up-the-blog) I've covered creating a simple blog with [Wyam](http://wyam.io) static generator. For a site generated like
