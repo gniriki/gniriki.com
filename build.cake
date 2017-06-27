@@ -1,5 +1,6 @@
 #tool nuget:?package=Wyam
 #addin nuget:?package=Cake.Wyam
+#addin "Cake.AWS.S3"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -18,7 +19,7 @@ Task("Build")
         {
             Recipe = "Blog",
             Theme = "CleanBlog",
-            UpdatePackages = true
+            UpdatePackages = false
         });        
     });
     
@@ -29,7 +30,7 @@ Task("Preview")
         {
             Recipe = "Blog",
             Theme = "CleanBlog",
-            UpdatePackages = true,
+            UpdatePackages = false,
             Preview = true,
             Watch = true
         });        
@@ -38,13 +39,19 @@ Task("Preview")
 Task("Deploy")
     .Does(() =>
     {
-        string token = EnvironmentVariable("AWS_ID");
-        if(string.IsNullOrEmpty(token))
-        {
-            throw new Exception("Could not get AWS_ID environment variable");
-        }
-        
-       
+            Information("Uploading files:");
+            StartProcess("C:\\Users\\Bartek\\AppData\\Local\\Programs\\Python\\Python36-32\\Scripts\\aws.cmd", "s3 sync ./Output/ s3://gniriki.com --delete");
+            
+            Information("Removing extensions:");
+            var files = GetFiles("./Output/**/*.html");
+            foreach(var file in files)
+            {
+                    var relativePath = MakeAbsolute(Directory("./Output")).GetRelativePath(file);
+                    var relativePathWithoutExtension = relativePath.ToString().Replace(".html", "");
+                    Information(relativePath);
+                    var parameters = "s3 mv s3://gniriki.com/" + relativePath + " s3://gniriki.com/" + relativePathWithoutExtension;
+                    StartProcess("C:\\Users\\Bartek\\AppData\\Local\\Programs\\Python\\Python36-32\\Scripts\\aws.cmd", parameters);
+            }
     });
     
 //////////////////////////////////////////////////////////////////////
@@ -52,9 +59,9 @@ Task("Deploy")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Preview");    
+    .IsDependentOn("Preview");
     
-Task("AppVeyor")
+Task("DeployToS3")
     .IsDependentOn("Build")
     .IsDependentOn("Deploy");
 
