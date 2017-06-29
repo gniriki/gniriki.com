@@ -52,6 +52,16 @@ Task("Deploy")
                     var parameters = "s3 mv s3://gniriki.com/" + relativePath + " s3://gniriki.com/" + relativePathWithoutExtension;
                     StartProcess("C:\\Users\\Bartek\\AppData\\Local\\Programs\\Python\\Python36-32\\Scripts\\aws.cmd", parameters);
             }
+
+            /*            
+            var dir = new DirectoryPath("./Output/");
+            var syncSettings = Context.CreateSyncSettings();
+            syncSettings.Region = RegionEndpoint.USEast1;
+            syncSettings.BucketName = "gniriki.com";
+            //Waiting for pull request to be accepted
+            syncSettings.DefaultContentType = "text/html";
+            S3SyncUpload(dir, syncSettings);
+            */
     });
     
 //////////////////////////////////////////////////////////////////////

@@ -1,1 +1,3 @@
-.\tools\Cake\Cake.exe -target=DeployToS3
+@ECHO OFF
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& '.\build.ps1'" -Target DeployToS3
+PAUSE
