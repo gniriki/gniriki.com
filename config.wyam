@@ -2,6 +2,6 @@
 #theme CleanBlog
 
 Settings[Keys.Host] = "gniriki.com";
-Settings[BlogKeys.Title] = "Gniriki Games";
-Settings[BlogKeys.Description] = "Gniriki Games";
+Settings[BlogKeys.Title] = "Bartosz Borowiecki";
+Settings[BlogKeys.Description] = "The personal blog of Bartosz Borowiecki";
 Settings[BlogKeys.Intro] = "My name is Bartosz Borowiecki and I'm game and .NET developer. I created this blog to write about the things I'm creating and the things I learned, so others can benefit from it.";
