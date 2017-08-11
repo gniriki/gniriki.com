@@ -1,0 +1,18 @@
+2 ways of keeping master's history clean:
+1. Squash merge PR when they arrive:
+    + nice history with references to PRs
+    + small number of commits on master branch
+    - you lose PR history
+    - to avoid losing to much you have to keep the PRs/branches really small,
+    can be bother some when creating bigger features
+
+2. Git rebase
+    + keep branch history
+    - each dev has to remember to clean it before 
+    OR
+    +- what do do if you have to clean history after a PR was opened?
+       a) make devs clean before push/PR
+        or
+       b) the first step of a CR should be a look at the commit history, if it's wrong
+        stop the CR and make the dev clean it by a rebase. He has to clean it before a code 
+        reviewer pulls anything
