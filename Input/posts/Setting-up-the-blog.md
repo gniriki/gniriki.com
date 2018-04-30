@@ -7,6 +7,8 @@ Tags:
   - Blog
 ---
 
+_**Update 27.04.2018:** The Wyam changed a lot since this post. It's now much easier to set everything up with [Wyam Blog Recipe](https://wyam.io/recipes/blog/overview)_
+
 As I started thinking about creating my own blog, the first question that popped up in my mind: where to host it? I've looked into
 Azure or Amazon AWS and it became clear that the cost to run even the simplest blog on a virtual server would be a bit too much, 
 especially for a site with a few posts that are mainly a static content. So I've started researching how to host my blog on cheap,
@@ -121,4 +123,4 @@ I've chosen Amazon S3 and my next post will cover that.
 Cheers,
 Bartosz
 
-P. S. Don't forget to spell-check your post!
+P.S. Don't forget to spell-check your post!
