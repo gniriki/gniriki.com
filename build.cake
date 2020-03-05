@@ -1,6 +1,6 @@
-#tool nuget:?package=Wyam
-#addin nuget:?package=Cake.Wyam
-#addin "Cake.AWS.S3"
+#tool nuget:?package=Wyam&version=1.7.4
+#addin nuget:?package=Cake.Wyam&version=1.7.4
+// #addin "Cake.AWS.S3"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
