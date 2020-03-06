@@ -32,6 +32,12 @@ It's really rare for the first idea to be good - it usually falls short when tur
 
 This time I want to focus on prototyping and identifying bad designs early on. If a feature or mechanic is bad, I need to quickly decide if it can be fixed or it needs to be dropped like a hot coal!
 
+### Creating the game, not the source code
+
+I need to remember that creating a game is the purpose here, not having best code or smart algorithms. It's pretty common for me to jump into coding right away. Often, I see a problem with code and start fixing it only to realize that it's a waste of time and the code was good enough. Other times I spend time coding some smart algorithm or feature only to realize that it doesn't affect the game that much or isn't really visible to the player. In cases like that, usually, a much simpler, abstract code that just pretends to do some smart things is more then enough.
+
+It's not to say that I will be ok with a bad code. Poor code is hard to change and update and can take more time to work with down the line.
+
 Next time, I will describe what game I will be making.
 
 
