@@ -46,7 +46,7 @@ Having right theme for the mechanics is pretty important. I made a mistake of no
 
 While it's nice to figure things by yourself, you need a lot of time to do that. With this project I'll try to learn from external sources as much as I can - podcasts, youtube and books. Whatever might help me with the game. I also would like to write down what I'm learning to remember it better.
 
-Next time, I will describe what game I will be making.
+#### Next time, I will describe what game I will be making.
 
 
 
