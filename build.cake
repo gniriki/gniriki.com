@@ -1,6 +1,5 @@
 #tool nuget:?package=Wyam&version=1.7.4
 #addin nuget:?package=Cake.Wyam&version=1.7.4
-// #addin "Cake.AWS.S3"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -40,7 +39,7 @@ Task("Deploy")
     .Does(() =>
     {
             Information("Uploading files:");
-            StartProcess("C:\\Users\\Bartek\\AppData\\Local\\Programs\\Python\\Python36-32\\Scripts\\aws.cmd", "s3 sync ./Output/ s3://gniriki.com --delete");
+            StartProcess("aws", "s3 sync ./Output/ s3://gniriki.com --delete");
             
             Information("Removing extensions:");
             var files = GetFiles("./Output/**/*.html");
@@ -50,18 +49,8 @@ Task("Deploy")
                     var relativePathWithoutExtension = relativePath.ToString().Replace(".html", "");
                     Information(relativePath);
                     var parameters = "s3 mv s3://gniriki.com/" + relativePath + " s3://gniriki.com/" + relativePathWithoutExtension;
-                    StartProcess("C:\\Users\\Bartek\\AppData\\Local\\Programs\\Python\\Python36-32\\Scripts\\aws.cmd", parameters);
+                    StartProcess("aws", parameters);
             }
-
-            /*            
-            var dir = new DirectoryPath("./Output/");
-            var syncSettings = Context.CreateSyncSettings();
-            syncSettings.Region = RegionEndpoint.USEast1;
-            syncSettings.BucketName = "gniriki.com";
-            //Waiting for pull request to be accepted
-            syncSettings.DefaultContentType = "text/html";
-            S3SyncUpload(dir, syncSettings);
-            */
     });
     
 //////////////////////////////////////////////////////////////////////
