@@ -27,4 +27,4 @@ It's time to learn some actual game design. I've dug up my books and ordered a f
 
 Wish me luck!
 
-[You can checkout out the RPG prototype here](http://gniriki.com/rpg/)
+[You can checkout out the RPG prototype here](/rpg/)
